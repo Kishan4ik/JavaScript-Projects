@@ -1,0 +1,24 @@
+.snake {
+    background-color: rgb(216, 214, 120);
+    opacity: 0.9;
+}
+
+.calc {
+    background-color: rgb(148, 216, 120);
+    opacity: 0.9;
+}
+
+.shooter {
+    background-color: rgb(224, 86, 52);
+    opacity: 0.9;
+}
+h1 {
+    text-align: center;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    border-radius: 10px;
+}
+
+div {
+    background-color: #ddd;
+    border-radius: 10px;
+}
