@@ -5,15 +5,21 @@ let resString = ''
 let resNum = 0
 let calcRes = 0
 
-reading()
-function reading(number) {
-    symbolEntering()
+symbolEntering()
 
+function resShow () {
+    const result = calculate()
+    screen.style.padding = '0'
+    screen.innerHTML = '<span class="screenString">' + resString + '= </span> <p class="screenRes">' + result + '</p>'
+    resNum = 0
+    resString =''
+    
 }
 
 function symbolEntering () {
     for(const btn of buttons) {
         btn.addEventListener('click', () => {
+            screen.style.padding = '20px'
             let value
             if(btn.classList.contains('num')) {
                 value = parseInt(btn.textContent)
@@ -21,21 +27,26 @@ function symbolEntering () {
                 resNum += value
                 resString += `${value}`
                 screen.innerHTML = resString
-            } else if(btn.classList.contains('op') && !btn.classList.contains('mult') ) {
-                resString = `${resNum}`
+            } else if(btn.classList.contains('op')) {
+                // resString = `${calculate()}`
                 resNum = 0
                 resString += btn.textContent
                 screen.innerHTML = resString
             } else if(btn.classList.contains('res')) {
-                const result = calculate()
-                screen.innerHTML = resString + '=' + result 
-                resNum = 0
-                resString =''
-                // Надо сделать переезд текста вверх и вывод результата шрифтом другого размера
+                // const result = calculate()
+                // screen.innerHTML = resString + '=' + result 
+                // resNum = 0
+                // resString =''
+                resShow()
             } else if (btn.classList.contains('mult')) {
                 resString = `${resNum}`
                 resNum = 0
                 resString += '*'
+                screen.innerHTML = resString
+            } else if (btn.classList.contains('divide')) {
+                resString = `${resNum}`
+                resNum = 0
+                resString += '/'
                 screen.innerHTML = resString
             } else if (btn.classList.contains('del')) {
                 resNum = Math.floor(resNum/10)
@@ -45,6 +56,12 @@ function symbolEntering () {
                 resNum = 0
                 resString = ''
                 screen.innerHTML = ''
+            } else if (btn.classList.contains('pm')) {
+                if (resNum == resString) {
+                    resNum = -resNum
+                    resString = `${resNum}`
+                    screen.innerHTML = resString
+                }
             }
             console.log(resNum, resString)
 
