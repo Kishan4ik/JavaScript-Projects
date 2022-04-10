@@ -1,35 +1,64 @@
-// Wrapper
+const people = [
+    {name: 'Artem', age: 20, budget: 70000},
+    {name: 'Vasya', age: 24, budget: 40000},
+    {name: 'Petya', age: 19, budget: 50000},
+    {name: 'Kolya', age: 34, budget: 100000},
+    {name: 'Masha', age: 73, budget: 10000},
+    {name: 'Sasha', age: 47, budget: 200000},
+]
 
-const withDefaultValue = (target,defaultValue = 0) => {
-    return new Proxy(target, {
-        get: (obj, prop) => (prop in obj ? obj[prop] : defaultValue)
-    })
-}
+// for(let i = 0; i < people.length; i++) {
+//     console.log(people[i])
+// }
 
-const position = withDefaultValue({
-    x: 24,
-    y: 42
-}, 0) // Задаем стандартное значение 0 для всех ключей, которые не заданы (есть х и у, а например для z будет 0)
+// for(person of people) {
+//     console.log(person)
+// }
 
-//Hidden properies
-const withHiddenProps = (target, prefix = '_') => {
-    return new Proxy(target, {
-        //реализуем методы, с помощью которых те свойства, которые начинаются с префикса, были
-        //в объекте, но мы к ним никак не могли получить к ним доступ (итерация, доступ напрямую и т.д.)
-        has: (obj, prop) => (prop in obj) && (!prop.startsWith(prefix)),
-         //Reflect Возвращает массив из ключей объекта
-        ownKeys: obj => Reflect.ownKeys(obj)
-            .filter(p => !p.startsWith(prefix)),
-        get: (obj, prop, reciever) => (prop in reciever) 
-            ? obj[prop] 
-            : undefined
-    })
-}
-const data = withHiddenProps({
-    name: 'Artem',
-    age: 20,
-    _uid: '122324'  // При работе с полями data мы можем вывести список аргументов
-                    // (там будет "_uid"), но при обращении к нему будет выведено 'undefined'
-                    // плюс любые попытки обратиться к нему будут отклонены 
-                    // Пример: '_uid' in data -> false 
-})
+    //ForEach
+
+// people.forEach(function(person, index, pArr) {
+//     console.log(person)
+// })
+
+// people.forEach((person, index, pArr) => console.log(person))
+
+    //Map
+
+// const newPeople = people.map(person => `${person.name} (${person.age})`) 
+// console.log(newPeople)
+
+    //Filter
+
+// const adults = []
+// for(let i = 0; i < people.length; i++) {
+//     if(people[i].age > 25) {
+//         adults.push(people[i])
+//     }
+// }
+
+// const adults = people.filter(person => person.age > 25)
+
+// console.log(adults)
+
+    //Reduce
+// let amount = 0
+// for(let i = 0; i < people.length; i++) {
+//         amount += people[i].budget
+//     }    
+
+// const amount = people.reduce((total, person) => total + person.budget, 0)
+// console.log(amount)
+
+    //Find
+
+// const Artem = people.find(person => person.name === 'Artem')
+// console.log(Artem)
+
+    //FindIndex
+
+// const ArtemIndex = people.findIndex(person => person.name === 'Artem')
+// console.log(ArtemIndex)   
+
+//===========================
+

@@ -7,12 +7,13 @@ const person ={
     age: 20,
     job:'fullstack'
 }
-
+//Повторяет функционал объекта
 const op = new Proxy(person, {
+    // Все методы здесь не случайные, а взяты из документации
     get(target, prop) {
         //Данный метод возвращает объект и поле, на которые он ставит ловушки
         //Метод реализует ловушки, где мы можем переписать базовый функционал методов объекта
-        console.log(`Getting prop ${prop}`)
+        console.log(`Getting prop ${prop}`) //Вот пример ловушки (изменение стандартного функционала)
         return target[prop]
     },
     set(target, prop, value) {

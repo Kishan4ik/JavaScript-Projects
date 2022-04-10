@@ -77,3 +77,18 @@ function calculate() {
         }
     return calcRes
 }
+
+for(let k of buttons) {
+    k.onclick = () => {
+        // screen.innerHTML = "Pressed the button"
+            k.style.boxShadow = ''
+            k.style.backgroundColor = 'rgb(116, 116, 116)'
+        // k.style.boxShadow = '0 0 20px rgb(94, 94, 94), 0 0 2px rgb(94, 94, 94)'
+        setTimeout( () => {
+            k.style.boxShadow = ''
+            k.style.backgroundColor = 'rgb(136, 136, 136)'
+            k.style.boxShadow = '0 0 1px rgb(94, 94, 94), 0 0 2px rgb(94, 94, 94)'
+            // screen.innerHTML = 'end'
+    }, 200)
+    }
+}

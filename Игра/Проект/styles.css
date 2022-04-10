@@ -44,6 +44,14 @@ body {
     color: rgb(255, 255, 255);
 }
 
+/* .button:oncl {
+    box-shadow: 0 0 20px rgb(153, 63, 63), 0 0 2px rgb(146, 56, 56);
+} */
+
+/* .button:focus {
+
+} */
+
 .screen {
     text-align: right;
     padding: 20px;
